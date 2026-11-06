@@ -33,12 +33,28 @@ pipeline {
         always {
             junit allowEmptyResults: true,
                   testResults: 'target/surefire-reports/*.xml'
+
+            publishHTML(target: [
+                reportDir: '.',
+                reportFiles: 'Biomedical_Report.html',
+                reportName: 'Biomedical Sensor Report',
+                keepAll: true,
+                alwaysLinkToLastBuild: true,
+                allowMissing: true
+            ])
+
+            archiveArtifacts artifacts: 'target/*.jar, Biomedical_Report.html',
+                             fingerprint: true,
+                             allowEmptyArchive: true
         }
+
         success {
             echo 'BUILD SUCCESSFUL!'
         }
+
         failure {
             echo 'BUILD FAILED!'
         }
     }
 }
+
