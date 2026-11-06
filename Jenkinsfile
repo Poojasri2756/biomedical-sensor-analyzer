@@ -12,6 +12,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                echo "Selected Analysis Mode: ${params.ANALYSIS_MODE}"
                 echo 'Checking out Biomedical Sensor Data Analyser'
                 checkout scm
             }
