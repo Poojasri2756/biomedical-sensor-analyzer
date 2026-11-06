@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -30,7 +31,8 @@ pipeline {
 
     post {
         always {
-            echo 'Biomedical Sensor Data Analyser pipeline completed.'
+            junit allowEmptyResults: true,
+                  testResults: 'target/surefire-reports/*.xml'
         }
         success {
             echo 'BUILD SUCCESSFUL!'
