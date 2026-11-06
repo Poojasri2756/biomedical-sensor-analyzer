@@ -1,6 +1,13 @@
 
 pipeline {
     agent any
+    parameters {
+    choice(
+        name: 'ANALYSIS_MODE',
+        choices: ['STANDARD', 'DETAILED'],
+        description: 'Select biomedical sensor analysis mode'
+    )
+}
 
     stages {
         stage('Checkout') {
